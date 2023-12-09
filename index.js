@@ -1,36 +1,113 @@
-const form = document.getElementById('quiz-form');
-form.addEventListener('submit', function (event) {
-  event.preventDefault(); 
-
-  const correctAnswers = ['Hi', 'Recursion', 'element.dataset.count'];
-
-  const selectedAnswers = [];
-  document.querySelectorAll('.answer:checked').forEach(function (input) {
-    selectedAnswers.push(input.value);  
-  });
-
-  const allAnswers = document.querySelectorAll('.answer');
-
-  allAnswers.forEach(function (input) {
-    const parentLabel = input.closest('label');
-    if (correctAnswers.includes(input.value)) {
-      if (selectedAnswers.includes(input.value)) {
-        parentLabel.style.color = '#4caf50'; 
-      } else {
-        parentLabel.style.color = '#000';       }
-    } else {
-      if (selectedAnswers.includes(input.value)) {
-        parentLabel.style.color = '#e57373'; 
-      } else {
-        parentLabel.style.color = '#000';       }
-    }
-    const alertBox = document.getElementById('alert');
-    const isAllCorrect = selectedAnswers.every(function (answer, index) {
-      return answer === correctAnswers[index];
-    });
-
-    if (isAllCorrect) {
-      alertBox.style.display = 'alert-title';
-    }  
-  });
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quiz</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="alert">
+    <div class="alert-title">Congratulations!!</div>
+    You got them all right!
+  </div>
+  <form id="quiz-form">
+    <ol>
+      <li class="question-item">
+        <div>What does this code return? (<code>0 || '' || false || "Hi"</code>)</div>
+        <div>
+          <ol>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-1" value="0">
+                <code>0</code>
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-1" value="Hi">
+                <code>"Hi"</code>
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-1" value="false">
+                <code>false</code>
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-1" value="''">
+                <code>''</code>
+              </label>
+            </li>
+          </ol>
+        </div>
+      </li>
+      <li class="question-item">
+        <div>What is it called when a function calls itself?</div>
+        <div>
+          <ol>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-2" value="Inception">
+                Inception
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-2" value="Self-Referential">
+                Self-Referential
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-2" value="Recursion">
+                Recursion
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-2" value="Who Cares">
+                Who Cares
+              </label>
+            </li>
+          </ol>
+        </div>
+      </li>
+      <li class="question-item">
+        <div>How do you access the value of the <code>data-count</code> data attribute in JavaScript?</div>
+        <div>
+          <ol>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-3" value="element.dataset.count">
+                <code>element.dataset.count</code>
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-3" value="element.dataAttribute.count">
+                <code>element.dataAttribute.count</code>
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-3" value="element.dataset.dataCount">
+                <code>element.dataset.dataCount</code>
+              </label>
+            </li>
+            <li class="answer-item">
+              <label>
+                <input class="answer" type="radio" name="answer-3" value="element.dataCount">
+                <code>element.dataCount</code>
+              </label>
+            </li>
+          </ol>
+        </div>
+      </li>
+    </ol>
+    <button type="submit">Check</button>
+  </form>
+</body>
+</html>
+<script src="./index.js"></script>
